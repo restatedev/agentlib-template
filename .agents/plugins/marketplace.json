@@ -1,0 +1,22 @@
+{
+  "name": "restate-agents",
+  "interface": {
+    "displayName": "Restate Agents"
+  },
+  "plugins": [
+    {
+      "name": "restate-agents",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/restatedev/agentlib.git",
+        "path": "./plugins/restate-agents",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Coding"
+    }
+  ]
+}

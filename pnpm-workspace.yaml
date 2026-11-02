@@ -1,0 +1,4 @@
+# pnpm's settings (one package, not a workspace).
+# Restate's packages as soon as they are released, not a day later (pnpm's default minimum age).
+minimumReleaseAgeExclude:
+  - "@restatedev/*"
