@@ -25,7 +25,7 @@ export const hello = restate.service({
   },
 });
 
-connect({services: [hello], name: "agentlib-template"});
+connect({ services: [hello], name: "agentlib-template-v1" });
 // To run locally, with a Restate server on this machine, use this instead:
 // import {serve} from "@restatedev/restate-sdk";
 // await serve({services: [hello], port: 9080});

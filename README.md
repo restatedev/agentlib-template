@@ -5,9 +5,9 @@ connected to [Restate Cloud](https://cloud.restate.dev).
 
 ## Before you start
 
-- The connect key of your Restate Cloud environment, from
+- `RESTATE_CONNECT_KEY`: The connect key of your Restate Cloud environment, from
   [**Configure SDK -> Create connect key**](https://cloud.restate.dev/to/developers/integration#configure-sdk).
-- An OpenAI API key. Other providers and models are covered in the
+- `OPENAI_API_KEY`: An OpenAI API key. Other providers and models are covered in the
   [agentlib README](https://github.com/restatedev/agentlib#capabilities).
 
 ## Run it locally
@@ -16,14 +16,14 @@ With Node 24 or later and pnpm:
 
 ```sh
 pnpm install
-RESTATE_CONNECT_KEY=... OPENAI_API_KEY=... node src/app.ts
+node src/app.ts
 ```
 
-Then, once, [register `connect://agentlib-template`](https://cloud.restate.dev/to/overview?register-deployment=connect://agentlib-template)
+Then, once, [register `connect://agentlib-template-v1`](https://cloud.restate.dev/to/overview?register-deployment=connect://agentlib-template-v1)
 in the Cloud UI (the application prints this link too), or with the CLI:
 
 ```sh
-npx @restatedev/restate deployments register connect://agentlib-template
+npx @restatedev/restate@next deployments register connect://agentlib-template-v1
 ```
 
 Ask a question from the [playground](https://cloud.restate.dev/to/overview?servicePlayground=Hello).
@@ -35,7 +35,7 @@ app in one container, with your keys from a Modal secret:
 
 ```sh
 pip install modal && modal setup
-modal secret create agentlib-template RESTATE_CONNECT_KEY=... OPENAI_API_KEY=...
+modal secret create agentlib-template RESTATE_CONNECT_KEY=${RESTATE_CONNECT_KEY} OPENAI_API_KEY=${OPENAI_API_KEY}
 modal deploy modal/on_modal.py
 ```
 
@@ -57,11 +57,11 @@ Get the ingress key of your Restate Cloud environment from
 Then send requests using `@restatedev/restate-sdk-clients`:
 
 ```ts
-import * as clients from '@restatedev/restate-sdk-clients';
+import * as clients from "@restatedev/restate-sdk-clients";
 
 const rs = clients.connect();
-const alice = rs.objectClient({ name: 'wallet' }, 'alice');
-console.log(await alice.hello()); // "Hello, alice!"
+const hello = rs.serviceClient({name: "Hello"});
+console.log(await hello.ask("What can you do?"));
 ```
 
 ## What's next

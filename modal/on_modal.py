@@ -7,7 +7,7 @@ One container runs src/app.ts, which connects out to Restate Cloud with
     pip install modal && modal setup                                                              # once
     modal secret create agentlib-template RESTATE_CONNECT_KEY=... OPENAI_API_KEY=...              # once
     modal deploy modal/on_modal.py                                                                # the image builds on Modal, then the app runs
-    restate deployments register connect://agentlib-template                                      # once: tells Restate Cloud about the deployment
+    restate deployments register connect://agentlib-template-v1                                      # once: tells Restate Cloud about the deployment
 
 `modal app logs agentlib-template` follows the app; `modal app stop
 agentlib-template` stops it.
